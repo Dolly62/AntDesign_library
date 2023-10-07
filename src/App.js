@@ -1,4 +1,5 @@
 import "./App.css";
+import ADE from "./Components/ADE";
 import AntDesign from "./Components/AntDesign";
 import AntRow from "./Components/AntRow";
 import AntTable from "./Components/AntTable";
@@ -11,7 +12,8 @@ function App() {
         {/* <AntDesign /> */}
         {/* <FormInput/> */}
         {/* <AntTable/> */}
-        <AntRow />
+        {/* <AntRow /> */}
+        <ADE />
       </header>
     </div>
   );
