@@ -1,6 +1,10 @@
 import { Button, Input, Modal, Table } from "antd";
 import React, { useState } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 
 const ADE = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -41,6 +45,33 @@ const ADE = () => {
       key: "2",
       title: "Name",
       dataIndex: "name",
+      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => {
+        return (
+          <>
+            <Input
+              autoFocus
+              placeholder="Type text here"
+              value={selectedKeys[0]}
+              onChange={(e) => {
+                setSelectedKeys(e.target.value ? [e.target.value] : []);
+                confirm({ closeDropdown: false });
+              }}
+              onPressEnter={() => {
+                confirm();
+              }}
+              onBlur={() => {
+                confirm();
+              }}
+            ></Input>
+          </>
+        );
+      },
+      filterIcon: () => {
+        return <SearchOutlined />;
+      },
+      onFilter: (value, record) => {
+        return record.name.toLowerCase().includes(value.toLowerCase());
+      },
     },
     {
       key: "3",
@@ -113,7 +144,11 @@ const ADE = () => {
   return (
     <div>
       <Button onClick={onAddNewStudentHandler}>Add new student</Button>
-      <Table columns={columns} dataSource={dataSource} />
+      <Table
+        style={{ display: "flex", flex: 1, margin: 10 }}
+        columns={columns}
+        dataSource={dataSource}
+      />
       <Modal
         title="Edit Student"
         visible={isEditing}
@@ -130,7 +165,7 @@ const ADE = () => {
                 return student;
               }
             });
-          })
+          });
           resetEditing();
         }}
       >
