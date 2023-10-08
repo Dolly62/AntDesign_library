@@ -4,6 +4,7 @@ import AntDesign from "./Components/AntDesign";
 import AntRow from "./Components/AntRow";
 import AntTable from "./Components/AntTable";
 import FormInput from "./Components/Form";
+import ValiForm from "./Components/ValiForm";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         {/* <FormInput/> */}
         {/* <AntTable/> */}
         {/* <AntRow /> */}
-        <ADE />
+        {/* <ADE /> */}
+        <ValiForm />
       </header>
     </div>
   );
